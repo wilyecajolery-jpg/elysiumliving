@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Elysium Living | Property & Co-Living</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-dark: #111827;
+      --bg-light: #f3f4f6;
+      --accent:  #d4a657;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --white: #ffffff;
+      --max-width: 1100px;
+    }
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background-color: #ffffff;
+      line-height: 1.6;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(17, 24, 39, 0.95);
+      color: var(--white);
+      backdrop-filter: blur(10px);
+    }
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+    }
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    nav li a {
+      padding: 0.25rem 0.4rem;
+      border-radius: 999px;
+    }
+    nav li a:hover {
+      background-color: rgba(243, 244, 246, 0.1);
+    }
+    .hero {
+      background: radial-gradient(circle at top left, #1f2937, #020617);
+      color: var(--white);
+      padding: 5rem 1.25rem 4rem;
+    }
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      gap: 2.5rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.15rem 0.75rem;
+      border-radius: 999px;
+      background-color: rgba(243, 244, 246, 0.08);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .badge span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background-color: var(--accent);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 1rem 0 0.75rem;
+    }
+    .hero p.lead {
+      font-size: 1rem;
+      max-width: 34rem;
+      color: #e5e7eb;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.75rem 0 1.5rem;
+    }
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.35rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .btn-primary {
+      background-color: var(--accent);
+      color: #1f2933;
+      border-color: var(--accent);
+      font-weight: 500;
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: #e5e7eb;
+      border-color: rgba(229, 231, 235, 0.5);
+    }
+    .hero-highlights {
+      display: grid;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: #d1d5db;
+    }
+    .hero-highlights span {
+      display: inline-block;
+      margin-right: 0.35rem;
+    }
+    section {
+      padding: 4rem 1.25rem;
+    }
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .section-header {
+      margin-bottom: 2rem;
+    }
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      margin: 0.4rem 0 0.5rem;
+    }
+    .section-intro {
+      max-width: 40rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 3fr 2fr;
+        align-items: center;
+      }
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .card {
+      background-color: var(--white);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      border: 1px solid #e5e7eb;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+    .card p {
+      margin: 0.35rem 0 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .pill-label {
+      display: inline-block;
+      padding: 0.1rem 0.55rem;
+      border-radius: 999px;
+      background-color: var(--bg-light);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .list {
+      padding-left: 1.1rem;
+      margin: 0.5rem 0 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .list li {
+      margin-bottom: 0.25rem;
+    }
+    .highlight-row {
+      display: grid;
+      gap: 1rem;
+    }
+    .highlight-stat {
+      padding: 0.9rem 1rem;
+      border-radius: 0.75rem;
+      background-color: var(--bg-light);
+      font-size: 0.85rem;
+    }
+    .highlight-stat strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.15rem;
+    }
+    .bg-light {
+      background-color: var(--bg-light);
+    }
+    .two-col {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .two-col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    form {
+      display: grid;
+      gap: 1rem;
+      max-width: 480px;
+    }
+    label {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.6rem 0.7rem;
+      border-radius: 0.55rem;
+      border: 1px solid #d1d5db;
+      font: inherit;
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    footer {
+      padding: 2rem 1.25rem 2.5rem;
+      background-color: var(--bg-dark);
+      color: #9ca3af;
+      font-size: 0.8rem;
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">Elysium Living</div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#what-we-do">What We Do</a></li>
+          <li><a href="#investors">Investors</a></li>
+          <li><a href="#landlords">Landlords</a></li>
+          <li><a href="#residents">Residents</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div>
+          <div class="badge"><span></span> UK Property & Co-Living</div>
+          <h1>Better Places to Live. Smarter Properties to Own.</h1>
+          <p class="lead">
+            Elysium Living is a UK-based property company specialising in high-quality shared homes and residential refurbishments. We turn tired buildings into well-managed, long-term assets for investors – and comfortable, modern homes for residents.
+          </p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Talk to Us About a Deal</a>
+            <a href="#investors" class="btn btn-outline">Investor Information</a>
+          </div>
+          <div class="hero-highlights">
+            <div><span>✓</span> Professional, data-driven acquisitions</div>
+            <div><span>✓</span> HMOs, refurbishments & small developments</div>
+            <div><span>✓</span> Transparent returns for long-term partners</div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <span class="pill-label">At a glance</span>
+            <h3>Resident-first, numbers-led.</h3>
+            <p>We focus on strong rental fundamentals, conservative stress-testing and resident comfort. That combination allows us to create stable returns in varied market conditions.</p>
+            <div class="highlight-row" style="margin-top: 1rem;">
+              <div class="highlight-stat">
+                <strong>Value-add focus</strong>
+                Refurbishments, layout improvements and better management to unlock value.
+              </div>
+              <div class="highlight-stat">
+                <strong>Hands-off for partners</strong>
+                We handle acquisitions, works and ongoing management.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-kicker">About</div>
+          <h2 class="section-title">About Elysium Living</h2>
+          <p class="section-intro">
+            Elysium Living was founded with a simple idea: if you create genuinely good homes, the numbers tend to look after themselves. We buy, refurbish and manage residential properties – with a particular focus on co-living HMOs and value-add projects in strong rental locations.
+          </p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Resident-first</h3>
+            <p>Clean, safe and comfortable homes in locations where people actually want to live – not just where the spreadsheet says they should.</p>
+          </div>
+          <div class="card">
+            <h3>Numbers that stack</h3>
+            <p>Realistic rents, cautious stress-testing and sensible exits. If a deal only works on best-case assumptions, we don’t do it.</p>
+          </div>
+          <div class="card">
+            <h3>Long-term mindset</h3>
+            <p>We aim to hold quality assets through the cycle, not just chase quick wins. That benefits investors, residents and local communities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section id="what-we-do" class="bg-light">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-kicker">Services</div>
+          <h2 class="section-title">What We Do</h2>
+          <p class="section-intro">
+            We specialise in taking underperforming residential property and turning it into stable, income-producing assets.
+          </p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>HMOs & Co-Living</h3>
+            <p>Converting and upgrading houses into fully compliant, well-managed HMOs for working professionals and key workers.</p>
+            <ul class="list">
+              <li>Licensing & compliance</li>
+              <li>Smart layouts & design</li>
+              <li>Professional management</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Refurbishments</h3>
+            <p>Buying tired or problem properties, then adding value through refurbishment and better configuration.</p>
+            <ul class="list">
+              <li>Below-market acquisitions</li>
+              <li>Layout improvements</li>
+              <li>Energy & comfort upgrades</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Small Developments</h3>
+            <p>Converting suitable commercial or residential buildings into high-quality flats where the planning and numbers support it.</p>
+            <ul class="list">
+              <li>Feasibility & planning</li>
+              <li>Specialist contractor teams</li>
+              <li>Clear exit strategy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVESTORS -->
+    <section id="investors">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-kicker">Investors</div>
+          <h2 class="section-title">For Investors & JV Partners</h2>
+          <p class="section-intro">
+            We work with a small number of private investors who want exposure to UK property without managing builders, tenants or spreadsheets themselves.
+          </p>
+        </div>
+        <div class="two-col">
+          <div>
+            <div class="card">
+              <h3>Aligned, transparent structures</h3>
+              <ul class="list">
+                <li>Clear strategies: BRRR, flips and long-term holds.</li>
+                <li>We only take on projects where the numbers work for everyone.</li>
+                <li>Regular updates, simple reporting and agreed exit options.</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <h3>Example ways of working</h3>
+              <ul class="list">
+                <li>Fixed-return loans secured on property, with agreed terms.</li>
+                <li>Joint ventures where we manage the project and share equity or profit.</li>
+                <li>Bespoke structures for larger or repeat investors.</li>
+              </ul>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem;">
+                Capital is at risk and property values can go down as well as up. We do not provide financial advice; investors should seek independent advice where needed.
+              </p>
+              <a href="#contact" class="btn btn-primary" style="margin-top: 0.75rem;">Request Investor Information</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANDLORDS & AGENTS -->
+    <section id="landlords" class="bg-light">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-kicker">Landlords & Agents</div>
+          <h2 class="section-title">For Landlords & Agents</h2>
+          <p class="section-intro">
+            We’re straightforward buyers. If you have a property that needs work, complex tenants or an unusual layout, we’re often interested where others aren’t.
+          </p>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <span class="pill-label">Landlords</span>
+            <h3>Quick, honest decisions</h3>
+            <ul class="list">
+              <li>We review properties quickly and give straight answers.</li>
+              <li>Happy to look at tired, unmortgageable or problem stock.</li>
+              <li>Flexible terms – with or without vacant possession, subject to agreement.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="pill-label">Agents</span>
+            <h3>Long-term relationships</h3>
+            <ul class="list">
+              <li>We buy via agents and understand the value of good partnerships.</li>
+              <li>We move quickly when deals fit our criteria.</li>
+              <li>Happy to consider off-market or “awkward” instructions.</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline" style="margin-top: 0.75rem;">Send Us a Property</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESIDENTS -->
+    <section id="residents">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-kicker">Residents</div>
+          <h2 class="section-title">For Residents</h2>
+          <p class="section-intro">
+            We believe that shared living doesn’t have to mean compromising on comfort or safety. Our homes are designed for people who value calm, well-managed spaces.
+          </p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Comfortable homes</h3>
+            <p>Fully furnished rooms with fast broadband and practical layouts designed for everyday living.</p>
+          </div>
+          <div class="card">
+            <h3>Inclusive living</h3>
+            <p>Where possible, we include utilities and regular cleaning of shared spaces to keep life simple.</p>
+          </div>
+          <div class="card">
+            <h3>Safe & compliant</h3>
+            <p>Properties compliant with local housing and HMO standards, with proactive maintenance and inspections.</p>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Register for Future Rooms</a>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="bg-light">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-kicker">Projects</div>
+          <h2 class="section-title">Current & Recent Projects</h2>
+          <p class="section-intro">
+            Here’s a flavour of the sort of projects we work on. Full case studies are available for investors on request.
+          </p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <span class="pill-label">Example</span>
+            <h3>HMO Conversion – Yorkshire</h3>
+            <ul class="list">
+              <li>Type: 5-bed professional HMO</li>
+              <li>Strategy: BRRR – buy, refurbish, refinance, hold</li>
+              <li>Focus: Upgrading a tired family home into a modern co-living space.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="pill-label">Example</span>
+            <h3>Refurb & Flip – North West</h3>
+            <ul class="list">
+              <li>Type: 3-bed terrace</li>
+              <li>Strategy: Refurb & sell</li>
+              <li>Focus: Cosmetic and layout improvements to appeal to local owner-occupiers.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="pill-label">Pipeline</span>
+            <h3>Small Commercial-to-Resi</h3>
+            <ul class="list">
+              <li>Type: Former commercial unit to multiple flats</li>
+              <li>Strategy: Planning uplift & development</li>
+              <li>Focus: Unlocking value in underused buildings.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW WE WORK + CONTACT -->
+    <section id="contact">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-kicker">Next Steps</div>
+          <h2 class="section-title">How We Work & Contact</h2>
+          <p class="section-intro">
+            Whether you have a property to sell, you’re an investor, or you’re looking for a room, we’d love to hear from you.
+          </p>
+        </div>
+        <div class="two-col">
+          <div>
+            <div class="card">
+              <h3>Our Simple Process</h3>
+              <ol class="list">
+                <li><strong>Understand the opportunity</strong> – you share a property, your goals or your investment appetite.</li>
+                <li><strong>Due diligence & offer</strong> – we review the numbers, planning and works, then give a clear yes/no and offer where appropriate.</li>
+                <li><strong>Refurbishment & stabilisation</strong> – we manage or oversee the works and stabilise rental income.</li>
+                <li><strong>Exit or hold</strong> – refinance, sale or long-term hold, with investors paid out as agreed.</li>
+              </ol>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <h3>Contact Elysium Living</h3>
+              <form>
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your name" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" />
+                </div>
+                <div>
+                  <label for="interest">I’m interested in</label>
+                  <select id="interest" name="interest">
+                    <option>Selling a property</option>
+                    <option>Investing</option>
+                    <option>Renting a room</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="Tell us a little about what you’re looking for..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </form>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem;">
+                Or email us directly at <strong>info@elysiumliving.co.uk</strong> (placeholder).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Elysium Living. All rights reserved.</div>
+      <div>UK-based property investment & co-living company.</div>
+    </div>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
