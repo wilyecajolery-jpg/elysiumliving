@@ -183,11 +183,14 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
-    .card {
-      background-color: var(--white);
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      border: 1px solid #e5e7eb;
+          .card {
+  background-color: #ffffffee; /* stronger white with slight transparency */
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid #d1d5db;
+  backdrop-filter: blur(4px);
+}
+
     }
     .card h3 {
       margin-top: 0;
